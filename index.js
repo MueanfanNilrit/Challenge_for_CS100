@@ -3,6 +3,11 @@ let cards = [];
 let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
+let timeLeft = 35;
+let timerInterval = null;
+let gameStarted = false;
+let gameOver = false;
+let matchedPairs = 0;
 
 document.querySelector(".score").textContent = score;
 
@@ -46,9 +51,28 @@ cardElement.innerHTML = `
     }
 }
 
+function startTimer() {
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        document.querySelector(".timer").textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            gameOver = true;
+            lockBoard = true;
+            alert("Time's up! Game Over!");
+        }
+    }, 1000);
+}
+
 function flipCard() {
-    if (lockBoard) return;
+    if (lockBoard || gameOver) return;
     if (this === firstCard) return;
+
+    if (!gameStarted) {
+        gameStarted = true;
+        startTimer();
+    }
 
     this.classList.add('flipped');
 
@@ -79,6 +103,14 @@ function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
 
+    matchedPairs++;
+
+    if (matchedPairs === cards.length / 2) {
+        clearInterval(timerInterval);
+        gameOver = true;
+        alert("Congratulations! You Win!");
+    }
+
     resetBoard();
 }
 
@@ -96,10 +128,20 @@ function resetBoard() {
 }
 
 function restart() {
+    clearInterval(timerInterval);
+
     resetBoard();
     shuffleCards();
+
     score = 0;
+    timeLeft = 35;
+    gameStarted = false;
+    gameOver = false;
+    matchedPairs = 0;
+
     document.querySelector(".score").textContent = score;
+    document.querySelector(".timer").textContent = timeLeft;
+
     gridContainer.innerHTML = '';
     generateCards();
 }
