@@ -1,0 +1,38 @@
+[
+    {
+        "image": "assets/Boy.jpg",
+        "name": "Boy"
+    },
+    {
+        "image": "assets/cat.jpg",
+        "name": "cat"
+    },
+    {
+        "image": "assets/Cat2.jpg",
+        "name": "Cat2"
+    },
+    {
+        "image": "assets/dog.jpg",
+        "name": "dog"
+    },
+    {
+        "image": "assets/Girl.jpg",
+        "name": "Girl"
+    },
+    {
+        "image": "assets/Hah.jpg",
+        "name": "Hah"
+    },
+    {
+        "image": "assets/lover.jpg",
+        "name": "lover"
+    },
+    {
+        "image": "assets/madeaw.jpg",
+        "name": "madeaw"
+    },
+    {
+        "image": "assets/nvidia.jpg",
+        "name": "nvidia"
+    }
+]
