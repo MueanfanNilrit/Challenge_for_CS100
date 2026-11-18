@@ -1,7 +1,7 @@
 body {
     min-height: 100vh;
     min-width: 100vh;
-    background-color: #d09fd1;
+    background-color: #d0b4d0;
     color: white;
 }
 
@@ -77,9 +77,56 @@ p{
     transform: rotateY(180deg);
 }
 
+
 .card .back {
-    background-image: url("assets/card.jfif");
-    background-size: cover;
+    background-color: #191633;
     background-position: center;
+    background-size: cover;
+    backface-visibility: hidden;
+    overflow: hidden;
 }
+
+/* ชั้นดาวระยิบระยับ */
+.card .back::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, white 99%, transparent),
+        radial-gradient(2px 2px at 60px 80px, #ffe9a8 99%, transparent),
+        radial-gradient(3px 3px at 100px 40px, white 99%, transparent),
+        radial-gradient(2px 2px at 40px 110px, #d8c8ff 99%, transparent),
+        radial-gradient(3px 3px at 120px 100px, white 99%, transparent);
+
+    background-size: 140px 130px;
+    animation: twinkle 1.5s ease-in-out infinite alternate;
+}
+
+/* ชั้นดาวอีกชุด */
+.card .back::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(3px 3px at 30px 50px, #fff5c2 99%, transparent),
+        radial-gradient(2px 2px at 90px 20px, white 99%, transparent),
+        radial-gradient(2px 2px at 70px 110px, #d8c8ff 99%, transparent);
+
+    background-size: 110px 140px;
+    animation: twinkle 2.5s ease-in-out infinite alternate;
+}
+
+/* Animation */
+@keyframes twinkle {
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 
