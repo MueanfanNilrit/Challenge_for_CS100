@@ -1,17 +1,45 @@
+
 body {
     min-height: 100vh;
-    min-width: 100vh;
-    background-color: #d0b4d0;
-    color: white;
+    min-width: 100%;
+    margin: 0;
+    background: linear-gradient(
+        -45deg,
+        #e6d5ff,
+        #c9b6ff,
+        #f5d6f0,
+        #b8c5ff
+    );
+    background-size: 400% 400%;
+    animation: lavenderBackground 12s ease infinite;
+    color: #ffffff;
 }
 
+/* Lavender background animation */
+@keyframes lavenderBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
 h1 {
+    color: #ff2dae;
     text-align: center;
     font-weight: 700;
     font-size: 50px;
 }
 
-p{
+p {
+    color: #ff2dae;
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -26,7 +54,7 @@ p{
     padding: 8px 16px;
     font-size: 30px;
     border-radius: 10px;
-    background-color: #27ae60;
+    background-color: #f9fd8b;
     color: white;
 }
 
