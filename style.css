@@ -1,8 +1,12 @@
 
 body {
     min-height: 100vh;
-    min-width: 100%;
+    width: 100%;
+    min-width: 0;
     margin: 0;
+    box-sizing: border-box;
+
+    
     background: linear-gradient(
         -45deg,
         #e6d5ff,
@@ -12,7 +16,7 @@ body {
     );
     background-size: 400% 400%;
     animation: lavenderBackground 12s ease infinite;
-    color: #ffffff;
+    color: white;
 }
 
 /* Lavender background animation */
