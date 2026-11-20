@@ -166,3 +166,56 @@ p {
 }
 
 
+
+/* Tablet */
+@media screen and (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        max-width: 600px;
+        gap: 12px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 600px) {
+    body {
+        min-width: 0;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 30px;
+        margin: 20px 0;
+    }
+
+    p {
+        font-size: 22px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: calc(100% - 32px);
+        gap: 10px;
+    }
+
+    .card {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 2 / 3;
+    }
+
+    .front-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .actions button {
+        font-size: 20px;
+        padding: 8px 14px;
+    }
+}
