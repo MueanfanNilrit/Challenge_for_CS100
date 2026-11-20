@@ -1,20 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Card Game</title>
+    <title>CS100 - Memory Card Challenge & Portfolio</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
-    <h1>Memory Cards</h1>
-    <div class="grid-container"></div>
-    <p>Score: <span class="score"></span></p>
-    <p>Time: <span class="timer">35</span> seconds</p>
-    <div class="actions">
-        <button onclick="restart()">Restart</button>
-    </div>
+    <!-- แถบเมนูสลับหน้า -->
+    <nav class="navbar">
+        <button id="tab-challenge" class="nav-btn active" onclick="switchTab('challenge')">🎮 Challenge (บูธเรา)</button>
+        <button id="tab-portfolio" class="nav-btn" onclick="switchTab('portfolio')">📁 My Portfolio</button>
+    </nav>
+
+    <!-- ส่วนที่ 1: หน้าเกม Challenge (ของเดิม + กล่องส่งออก JSON) -->
+    <section id="section-challenge">
+        <h1>Memory Cards</h1>
+        <div class="grid-container"></div>
+        <p>Score: <span class="score">0</span> | Time: <span class="timer">35</span>s</p>
+        <div class="actions">
+            <button onclick="restart()">Restart</button>
+        </div>
+
+        <!-- กล่องส่งออก Portfolio Item JSON สำหรับเพื่อนที่มาเล่นบูธเรา (ซ่อนไว้จนกว่าจะเล่นจบ) -->
+        <div id="challenge-export-box" class="card-panel hidden">
+            <h2>🎉 จบกิจกรรมแล้ว! รับ Portfolio Item JSON</h2>
+            <p class="sub-text">คัดลอกโค้ดด้านล่าง หรือกดดาวน์โหลดไฟล์เพื่อนำไป Import ลงใน Portfolio ของคุณ</p>
+            <textarea id="generated-json-output" rows="8" readonly></textarea>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="copyChallengeJSON()">📋 Copy JSON</button>
+                <button class="btn-secondary" onclick="downloadChallengeJSON()">⬇️ Download .json</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ส่วนที่ 2: หน้าจัดการ My Portfolio -->
+    <section id="section-portfolio" class="hidden">
+        <h1>My Portfolio</h1>
+
+        <!-- กล่อง Import JSON จากกลุ่มอื่น -->
+        <div class="card-panel">
+            <h2>📥 Import Portfolio Item จากบูธอื่น</h2>
+            <p class="sub-text">วางโค้ด JSON ที่ได้จากการไปเล่น Challenge กลุ่มอื่น หรือเลือกไฟล์ .json</p>
+            <textarea id="import-json-input" rows="5" placeholder='วางโค้ด JSON ที่นี่ เช่น {"title": "...", "booth": "..."}'></textarea>
+            <div class="btn-group">
+                <input type="file" id="import-file-input" accept=".json" onchange="handleFileUpload(event)">
+                <button class="btn-primary" onclick="importPortfolioItem()">➕ Import เข้า Portfolio</button>
+            </div>
+        </div>
+
+        <!-- กล่องแสดงรายการใน Portfolio และปุ่ม Export ไฟล์ส่งอาจารย์ -->
+        <div class="card-panel">
+            <div class="portfolio-header">
+                <h2>รายการผลงานของฉัน (<span id="portfolio-count">0</span> รายการ)</h2>
+                <button class="btn-success" onclick="exportFullPortfolio()">📤 Export my-portfolio.json (ส่งอาจารย์)</button>
+            </div>
+            <div id="portfolio-list" class="portfolio-list">
+                <!-- รายการจะถูกสร้างด้วย JavaScript -->
+            </div>
+        </div>
+    </section>
+
     <script src="index.js"></script>
 </body>
 </html>
